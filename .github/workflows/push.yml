@@ -1,5 +1,5 @@
-name: Audit live site
-on: push
+name: Check Lighthouse
+on: pull_request
 
 jobs:
   main:
