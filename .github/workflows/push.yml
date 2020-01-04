@@ -95,9 +95,6 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         echo ::set-env name=DATE::$(date +%Y%m%d%H%M%S)
-        
-        aws s3 cp \
-          --recursive \
-          --region ap-northeast-2 \
-          . s3://github-actions-dh/$DATE/
+        aws s3 cp report/ s3://github-actions-dh/$DATE/ --recursive --acl public-read
+
     
