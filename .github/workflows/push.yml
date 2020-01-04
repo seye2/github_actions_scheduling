@@ -2,14 +2,62 @@ name: Audit live site
 on: pull_request
 
 jobs:
-  audit:
+  main:
     runs-on: ubuntu-latest
     steps:
     - name: Audit Netlify deploy preview
       uses: jakejarvis/lighthouse-action@master
       with:
-        netlify_site: 'www.wanted.co.kr'
+        url: 'www.wanted.co.kr'
     - uses: actions/upload-artifact@master
       with:
-        name: report
-        path: './report'
+        name: reportMain
+        path: './report/main'
+
+  jd:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Audit Netlify deploy preview
+      uses: jakejarvis/lighthouse-action@master
+      with:
+        url: 'https://www.wanted.co.kr/wdlist?country=kr&job_sort=job.latest_order&years=-1&locations=seoul'
+    - uses: actions/upload-artifact@master
+      with:
+        name: reportJd
+        path: './report/jd'
+
+  salary:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Audit Netlify deploy preview
+      uses: jakejarvis/lighthouse-action@master
+      with:
+        url: 'https://www.wanted.co.kr/salary'
+    - uses: actions/upload-artifact@master
+      with:
+        name: reportSalary
+        path: './report/salary'
+
+  events:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Audit Netlify deploy preview
+      uses: jakejarvis/lighthouse-action@master
+      with:
+        url: 'https://www.wanted.co.kr/events'
+    - uses: actions/upload-artifact@master
+      with:
+        name: reportEvents
+        path: './report/events'
+
+  eventsDetail:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Audit Netlify deploy preview
+      uses: jakejarvis/lighthouse-action@master
+      with:
+        url: 'https://www.wanted.co.kr/events/hron201903'
+    - uses: actions/upload-artifact@master
+      with:
+        name: reportEvents
+        path: './report/eventsDetail'
