@@ -87,22 +87,19 @@ jobs:
     steps:
     - uses: actions/download-artifact@master
       with:
-        name: report
-    # - uses: actions/download-artifact@master
-    #   with:
-    #     name: reportMain
-    # - uses: actions/download-artifact@master
-    #   with:
-    #     name: reportJL
-    # - uses: actions/download-artifact@master
-    #   with:
-    #     name: reportJdDetail
-    # - uses: actions/download-artifact@master
-    #   with:
-    #     name: reportEvents
-    # - uses: actions/download-artifact@master
-    #   with:
-    #     name: reportEventDetail
+        name: reportMain
+    - uses: actions/download-artifact@master
+      with:
+        name: reportJL
+    - uses: actions/download-artifact@master
+      with:
+        name: reportJdDetail
+    - uses: actions/download-artifact@master
+      with:
+        name: reportEvents
+    - uses: actions/download-artifact@master
+      with:
+        name: reportEventDetail
 
     - name: Deploy Report to S3
       env:
@@ -112,5 +109,5 @@ jobs:
         aws s3 cp \
           --recursive \
           --region ap-northeast-2 \
-          build s3://github-actions-dh/report # develop branch 디렉토리로 배포
+          report* s3://github-actions-dh/report # develop branch 디렉토리로 배포
     
