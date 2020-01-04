@@ -12,7 +12,7 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: reportMain
-        path: './report/main'
+        path: './report'
 
   jd:
     runs-on: ubuntu-latest
@@ -24,7 +24,7 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: reportJd
-        path: './report/jd'
+        path: './report'
 
   salary:
     runs-on: ubuntu-latest
@@ -36,7 +36,7 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: reportSalary
-        path: './report/salary'
+        path: './report'
 
   events:
     runs-on: ubuntu-latest
@@ -48,7 +48,7 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: reportEvents
-        path: './report/events'
+        path: './report'
 
   eventsDetail:
     runs-on: ubuntu-latest
@@ -60,4 +60,4 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: reportEvents
-        path: './report/eventsDetail'
+        path: './report'
