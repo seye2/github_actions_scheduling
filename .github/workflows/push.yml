@@ -1,8 +1,9 @@
 name: Audit live site
-on: pull_request
+on: push
 
 jobs:
   main:
+    name: main
     runs-on: ubuntu-latest
     steps:
     - name: Create Report Wanted Main
@@ -15,6 +16,7 @@ jobs:
         path: 'report'
 
   job_list:
+    name: job_list
     runs-on: ubuntu-latest
     steps:
     - name: Create Report Wanted Job List
@@ -27,6 +29,7 @@ jobs:
         path: 'report'
 
   job_detail:
+    name: job_detail
     runs-on: ubuntu-latest
     steps:
     - name: Create Report Wanted Job Detail
@@ -39,6 +42,7 @@ jobs:
         path: 'report'
 
   salary:
+    name: salary
     runs-on: ubuntu-latest
     steps:
     - name: Create Report Wanted Job Salary
@@ -51,6 +55,7 @@ jobs:
         path: 'report'
 
   events:
+    name: events
     runs-on: ubuntu-latest
     steps:
     - name: Create Report Wanted Event List
@@ -63,6 +68,7 @@ jobs:
         path: 'report'
 
   event_detail:
+    name: event_detail
     runs-on: ubuntu-latest
     steps:
     - name: Create Report Wanted Event Detail
@@ -75,6 +81,7 @@ jobs:
         path: 'report'
 
   deploy_report:
+    name: deploy_report
     runs-on: ubuntu-latest
     needs: [main, job_list, job_detail, salary, events, event_detail]
     steps:
