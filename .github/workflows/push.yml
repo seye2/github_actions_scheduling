@@ -80,4 +80,16 @@ jobs:
     steps:
     - uses: actions/download-artifact@master
       with:
-        name: report
+        name: reportMain
+    - uses: actions/download-artifact@master
+      with:
+        name: reportJL
+    - uses: actions/download-artifact@master
+      with:
+        name: reportJdDetail
+    - uses: actions/download-artifact@master
+      with:
+        name: reportEvents
+    - uses: actions/download-artifact@master
+      with:
+        name: reportEventDetail
