@@ -1,5 +1,5 @@
 name: Check Lighthouse
-on: pull_request
+on: push
 
 jobs:
   main:
@@ -101,7 +101,7 @@ jobs:
       with:
         name: reportEventDetail
 
-    - uses: Deploy Report to S3
+    - name: Deploy Report to S3
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
