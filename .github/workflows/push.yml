@@ -94,9 +94,10 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
-        dateDirectory = $(date +%Y%m%d%H%M%S)
+        echo ::set-env name=DATE::$(date +%Y%m%d%H%M%S)
+        
         aws s3 cp \
           --recursive \
           --region ap-northeast-2 \
-          . s3://github-actions-dh/${dateDirectory}
+          . s3://github-actions-dh/$DATE
     
