@@ -12,7 +12,7 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: report
-        path: 'main'
+        path: 'report'
 
   job_list:
     runs-on: ubuntu-latest
@@ -24,7 +24,7 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: report
-        path: 'jl'
+        path: 'report/jl'
 
   job_detail:
     runs-on: ubuntu-latest
@@ -36,7 +36,7 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: report
-        path: 'jd'
+        path: 'report/jd'
 
   salary:
     runs-on: ubuntu-latest
@@ -48,7 +48,7 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: report
-        path: 'salary'
+        path: 'report/salary'
 
   events:
     runs-on: ubuntu-latest
@@ -60,7 +60,7 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: report
-        path: 'event'
+        path: 'report/event'
 
   event_detail:
     runs-on: ubuntu-latest
@@ -71,8 +71,8 @@ jobs:
         url: 'https://www.wanted.co.kr/events/booktalk02'
     - uses: actions/upload-artifact@master
       with:
-        name: report
-        path: 'ed'
+        name: reportEventDetail
+        path: 'report/ed'
 
   deploy_report:
     runs-on: ubuntu-latest
