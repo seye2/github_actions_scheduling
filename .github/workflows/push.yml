@@ -97,5 +97,5 @@ jobs:
         aws s3 cp \
           --recursive \
           --region ap-northeast-2 \
-          . s3://github-actions-dh/$(date +%Y%m%d%H%M%S)/
+          report/ s3://github-actions-dh/report/$(date +%Y%m%d%H%M%S)/
     
