@@ -1,80 +1,32 @@
 name: Check Lighthouse
-on: push
+on:
+  release:
+    types: [created]
 
 jobs:
-  main:
-    name: main
+  lighthouse:
     runs-on: ubuntu-latest
     steps:
-    - name: Create Report Wanted Main
-      uses: jakejarvis/lighthouse-action@master
-      with:
-        url: 'https://www.wanted.co.kr'
-    - uses: actions/upload-artifact@master
-      with:
-        name: report
-        path: 'report'
-
-  job_list:
-    name: job_list
-    runs-on: ubuntu-latest
-    steps:
-    - name: Create Report Wanted Job List
-      uses: jakejarvis/lighthouse-action@master
-      with:
-        url: 'https://www.wanted.co.kr/wdlist?country=kr&job_sort=job.latest_order&years=-1&locations=seoul'
-    - uses: actions/upload-artifact@master
-      with:
-        name: report
-        path: 'report'
-
-  job_detail:
-    name: job_detail
-    runs-on: ubuntu-latest
-    steps:
-    - name: Create Report Wanted Job Detail
-      uses: jakejarvis/lighthouse-action@master
-      with:
-        url: 'https://www.wanted.co.kr/wd/32385'
-    - uses: actions/upload-artifact@master
-      with:
-        name: report
-        path: 'report'
-
-  events:
-    name: events
-    runs-on: ubuntu-latest
-    steps:
-    - name: Create Report Wanted Event List
-      uses: jakejarvis/lighthouse-action@master
-      with:
-        url: 'https://www.wanted.co.kr/events'
-    - uses: actions/upload-artifact@master
-      with:
-        name: reportEvents
-        path: 'report'
-
-  event_detail:
-    name: event_detail
-    runs-on: ubuntu-latest
-    steps:
-    - name: Create Report Wanted Event Detail
-      uses: jakejarvis/lighthouse-action@master
-      with:
-        url: 'https://www.wanted.co.kr/events/booktalk02'
-    - uses: actions/upload-artifact@master
-      with:
-        name: report
-        path: 'report'
+      - uses: actions/checkout@v1
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v2
+        with:
+          urls: |
+            https://wanted.co.kr
+      - name: Save results
+        uses: actions/upload-artifact@v1
+        with:
+          name: lighthouse-results
+          path: '.lighthouseci' # This will save the Lighthouse results as .json files
 
   deploy_report:
     name: deploy_report
     runs-on: ubuntu-latest
-    needs: [main, job_list, job_detail, events, event_detail]
+    needs: [lighthouse]
     steps:
     - uses: actions/download-artifact@master
       with:
-        name: report
+        name: lighthouse-results
 
     - name: Deploy Report to S3
       env:
@@ -84,5 +36,5 @@ jobs:
         aws s3 cp \
           --recursive \
           --region ap-northeast-2 \
-          report/ s3://github-actions-dh/report/$(date +%Y%m%d%H%M%S)/
+          lighthouse-results/ s3://github-actions-dh/report/$(date +%Y%m%d%H%M%S)/
     
