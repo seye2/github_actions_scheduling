@@ -13,6 +13,7 @@ jobs:
         with:
           urls: |
             https://wanted.co.kr
+            https://wanted.co.kr/events
       - name: Save results
         uses: actions/upload-artifact@v1
         with:
