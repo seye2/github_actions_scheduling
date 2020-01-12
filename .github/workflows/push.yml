@@ -9,12 +9,12 @@ jobs:
       - name: Audit URLs using Lighthouse
         uses: wanteddev/lighthouse@master
         with:
-          url: https://wanted.co.kr
+          url: 'https://www.wanted.co.kr'
       - name: Save results
         uses: actions/upload-artifact@v1
         with:
           name: report
-          path: 'report' # This will save the Lighthouse results as .json files
+          path: './report' # This will save the Lighthouse results as .json files
 
   deploy_report:
     name: deploy_report
