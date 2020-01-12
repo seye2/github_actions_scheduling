@@ -10,7 +10,6 @@ jobs:
         uses: wanteddev/lighthouse@master
         with:
           url: https://wanted.co.kr
-          device: desktop
       - name: Save results
         uses: actions/upload-artifact@v1
         with:
