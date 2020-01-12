@@ -34,5 +34,6 @@ jobs:
         aws s3 cp \
           --recursive \
           --region ap-northeast-2 \
+          --acl public-read \
           lighthouse-results/ s3://github-actions-dh/report/$(date +%Y%m%d%H%M%S)/
     
