@@ -7,17 +7,15 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@v2
+        uses: wanteddev/lighthouse@v2
         with:
-          urls: |
-            https://wanted.co.kr
-            https://wanted.co.kr/events
-          configPath: '.github/lighthouse/lighthouserc.json'
+          url: https://wanted.co.kr
+          device: desktop
       - name: Save results
         uses: actions/upload-artifact@v1
         with:
-          name: lighthouse-results
-          path: '.lighthouseci' # This will save the Lighthouse results as .json files
+          name: report
+          path: 'report' # This will save the Lighthouse results as .json files
 
   deploy_report:
     name: deploy_report
@@ -26,7 +24,7 @@ jobs:
     steps:
     - uses: actions/download-artifact@master
       with:
-        name: lighthouse-results
+        name: report
 
     - name: Deploy Report to S3
       env:
