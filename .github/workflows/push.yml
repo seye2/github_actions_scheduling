@@ -11,14 +11,7 @@ jobs:
         uses: wanteddev/lighthouse@master
         with:
           url: 'https://www.wanted.co.kr'
-          device: 'mobile'
-          
-      - name: Audit URLs using Lighthouse
-        uses: wanteddev/lighthouse@master
-        with:
-          url: 'https://www.wanted.co.kr'
-          device: 'desktop'
-          
+
       - name: Save results
         uses: actions/upload-artifact@v1
         with:
