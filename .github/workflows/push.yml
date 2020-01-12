@@ -12,7 +12,6 @@ jobs:
         with:
           url: 'https://www.wanted.co.kr'
           device: 'mobile'
-          
       - name: Save results
         uses: actions/upload-artifact@v1
         with:
